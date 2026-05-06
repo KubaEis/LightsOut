@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.util.Random;
 
@@ -24,6 +25,8 @@ public class LightsOutController {
     private Label pocetKliknutiLabel;
     @FXML
     private TextField velikostGridu;
+    @FXML
+    private VBox game;
 
 
     @FXML
@@ -105,21 +108,10 @@ public class LightsOutController {
 
     @FXML
     protected void submitSize(){
+        game.setPrefSize((Integer.parseInt(velikostGridu.getText())*100) + 40, (Integer.parseInt(velikostGridu.getText())*100) + 140);
         gridSizeRow = Integer.parseInt(velikostGridu.getText());
         gridSizeCol = Integer.parseInt(velikostGridu.getText());
         newGame();
+
     }
-
-    public void resetHry() {
-        // 1. Vymaž vizuální prvky z obrazovky
-        buttonGridPane.getChildren().clear();
-
-        // 2. Vymaž (reinitializuj) pole v paměti
-        buttons = new Button[3][3];
-        states = new boolean[3][3];
-
-        // 3. Znovu zavolej inicializaci, která vytvoří nová tlačítka
-        initialize();
-    }
-
 }
